@@ -39,7 +39,7 @@ class StudentStore {
   @action.bound download(query, pageNumber = 1) {
     console.log("StudentStore - download: query  = " + query);
     let apiHost = 'http://' + (process.env.API_HOST || 'localhost') + ':3000';
-    //apiHost = 'https://agile-falls-98686.herokuapp.com';
+    apiHost = 'https://agile-falls-98686.herokuapp.com';
     console.log("StudentStore - download: apiHost  = " + apiHost);
     console.log("StudentStore - download: process.env.API_HOST  = " + process.env.API_HOST);
     paginationStore.setQuery(query);
