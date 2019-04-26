@@ -10,12 +10,21 @@ import '!style-loader!css-loader!bootstrap/dist/css/bootstrap.css';
   constructor(props) {
     super(props);
     this.state = {};
-    this.handleOnChange = this.handleOnChange.bind(this);
+    this.handleOnChange = this
+      .handleOnChange
+      .bind(this);
   }
 
-  handleOnChange( changeEvent) {
-    this.props.sortedStore.setSortedStore(changeEvent.target.value);
-    this.props.studentStore.downloadStudents();
+  handleOnChange(changeEvent) {
+    this
+      .props
+      .sortedStore
+      .setSortedStore(changeEvent.target.value);
+    console.log("Scene - SortControl.js  changeEvent.target.value : " + changeEvent.target.value);
+    this
+      .props
+      .studentStore
+      .downloadStudents();
   }
 
   componentDidMount() {}
@@ -24,20 +33,20 @@ import '!style-loader!css-loader!bootstrap/dist/css/bootstrap.css';
     return (
       <div className="m-5">
         <Form.Label className="font-weight-bold">Sorted by</Form.Label>
-        <Form.Control 
-          onChange={this.handleOnChange}  
-          as="select" 
-          name="filterrific[sorted_by]" 
+        <Form.Control
+          onChange={this.handleOnChange}
+          as="select"
+          name="filterrific[sorted_by]"
           id="filterrific_sorted_by"
-          value={this.props.sortedStore.selectedSort}
-        >
-        {this
-              .props
-              .sortedStore
-              .selectOptions
-              .map((option) => <option key={option.id} value={option.value}>
-                  {option.label}
-              </option>)}
+          value={this.props.sortedStore.selectedSort}>
+          {this
+            .props
+            .sortedStore
+            .selectOptions
+            .map((option) => <option key={option.id} value={option.value}>
+              {option.label}
+            </option>)
+          }
         </Form.Control>
       </div>
     );

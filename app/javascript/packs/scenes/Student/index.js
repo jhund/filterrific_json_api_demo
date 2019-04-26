@@ -11,7 +11,7 @@ import SortControl from './components/SortControl';
 import CustomPagination from './components/CustomPagination';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faSort } from '@fortawesome/free-solid-svg-icons'
+import { faSort, faSortAlphaDown, faSortAlphaUp, faSortNumericDown, faSortNumericUp  } from '@fortawesome/free-solid-svg-icons'
 
 @inject('studentStore', 'countryStore', 'paginationStore', 'dateStore', 'searchStore', 'sortedStore')
 @observer class Student extends Component
@@ -33,6 +33,8 @@ import { faSort } from '@fortawesome/free-solid-svg-icons'
     this.props.countryStore.resetSelectedCountry();
     this.props.dateStore.resetDate();
     this.props.sortedStore.resetSortedStore();
+    this.props.studentStore.resetColumnIcons();
+
 
     function delay(ms) {
       return new Promise(resolve => setTimeout(resolve, ms));
@@ -125,10 +127,10 @@ import { faSort } from '@fortawesome/free-solid-svg-icons'
         <Table striped bordered hover className="m-1">
           <thead>
             <tr>
-              <th onClick={this.handleSortByName}> <FontAwesomeIcon icon={faSort} /> Name  </th>
-              <th onClick={this.handleSortByEmail}> <FontAwesomeIcon icon={faSort} />  Email</th>
-              <th onClick={this.handleSortByCountry}> <FontAwesomeIcon icon={faSort} />  Country </th>
-              <th onClick={this.handleSortByRegisteredAt}> <FontAwesomeIcon icon={faSort} />  Registered at</th>
+              <th onClick={this.handleSortByName}> <FontAwesomeIcon icon={this.props.studentStore.columnIcon["name"] } /> Name  </th>
+              <th onClick={this.handleSortByEmail}> <FontAwesomeIcon icon={this.props.studentStore.columnIcon["email"] } />  Email</th>
+              <th onClick={this.handleSortByCountry}> <FontAwesomeIcon icon={this.props.studentStore.columnIcon["country"] } />  Country </th>
+              <th onClick={this.handleSortByRegisteredAt}> <FontAwesomeIcon icon={this.props.studentStore.columnIcon["created_at"] } />  Registered at</th>
             </tr>
           </thead>
           <tbody>

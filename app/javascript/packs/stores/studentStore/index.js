@@ -2,7 +2,9 @@ import {observable, action} from "mobx";
 import axios from "axios";
 import paginationStore from "../paginationStore"
 import countryStore from "../countryStore"
-import serialize from "form-serialize";
+//import serialize from "form-serialize";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faSort, faSortAlphaDown, faSortAlphaUp, faSortNumericDown, faSortNumericUp  } from '@fortawesome/free-solid-svg-icons'
 
 const SIZE = 6;
 class StudentStore {
@@ -10,6 +12,7 @@ class StudentStore {
   @observable total;
   @observable per_page;
   @observable columnSortOrder;
+  @observable columnIcon;
 
   constructor() {
     this.students = [];
@@ -21,6 +24,12 @@ class StudentStore {
       "country": "asc",
       "created_at": "asc"
     };
+    this.columnIcon = {
+      "name": faSort,
+      "email": faSort,
+      "country": faSort,
+      "created_at": faSort
+    };
   }
 
   @action setStudents(students) {
@@ -30,12 +39,13 @@ class StudentStore {
   @action.bound download(query, pageNumber = 1) {
     console.log("StudentStore - download: query  = " + query);
     let apiHost = 'http://' + (process.env.API_HOST || 'localhost') + ':3000';
-    apiHost = 'https://agile-falls-98686.herokuapp.com';
+    //apiHost = 'https://agile-falls-98686.herokuapp.com';
     console.log("StudentStore - download: apiHost  = " + apiHost);
     console.log("StudentStore - download: process.env.API_HOST  = " + process.env.API_HOST);
     paginationStore.setQuery(query);
     query["page"] = pageNumber;
 
+    // create the query string using only JavaScript
     let query_string = Object.keys(query).map(key => `${encodeURIComponent(key)}=${encodeURIComponent(query[key])}`).join('&');
     console.log("StudentStore - download: query_string  = " + query_string);
 
@@ -65,7 +75,19 @@ class StudentStore {
     let query = this.createQueryObject();
     const sort_control = document.getElementById("filterrific_sorted_by");
     query[sort_control.name] = 'name_' + this.columnSortOrder["name"];
-    this.columnSortOrder["name"] = this.columnSortOrder["name"] == "asc" ? "desc" : "asc";
+    //this.columnSortOrder["name"] = this.columnSortOrder["name"] == "asc" ? "desc" : "asc";
+    this.resetColumnIcons();
+    if (this.columnSortOrder["name"] == "asc")
+    {
+      this.columnSortOrder["name"] =  "desc";
+      this.columnIcon["name"] = faSortAlphaDown;
+    }
+    else if (this.columnSortOrder["name"] == "desc")
+    {
+      this.columnSortOrder["name"] = "asc";
+      this.columnIcon["name"] = faSortAlphaUp;
+    }
+
     this.download(query, 1);
 
   }
@@ -118,7 +140,18 @@ class StudentStore {
     let query = this.createQueryObject();
     const sort_control = document.getElementById("filterrific_sorted_by");
     query[sort_control.name] = 'email_' + this.columnSortOrder["email"];
-    this.columnSortOrder["email"] = this.columnSortOrder["email"] == "asc" ? "desc" : "asc";
+    //this.columnSortOrder["email"] = this.columnSortOrder["email"] == "asc" ? "desc" : "asc";
+    this.resetColumnIcons();
+    if (this.columnSortOrder["email"] == "asc")
+    {
+      this.columnSortOrder["email"] =  "desc";
+      this.columnIcon["email"] = faSortAlphaDown;
+    }
+    else if (this.columnSortOrder["email"] == "desc")
+    {
+      this.columnSortOrder["email"] = "asc";
+      this.columnIcon["email"] = faSortAlphaUp;
+    }
     this.download(query, 1);
 
     // let copies = this .students .slice(0, this.students.length);
@@ -130,7 +163,18 @@ class StudentStore {
     let query = this.createQueryObject();
     const sort_control = document.getElementById("filterrific_sorted_by");
     query[sort_control.name] = 'country_name_' + this.columnSortOrder["country"];
-    this.columnSortOrder["country"] = this.columnSortOrder["country"] == "asc" ? "desc" : "asc";
+    //this.columnSortOrder["country"] = this.columnSortOrder["country"] == "asc" ? "desc" : "asc";
+    this.resetColumnIcons();
+    if (this.columnSortOrder["country"] == "asc")
+    {
+      this.columnSortOrder["country"] = "desc";
+      this.columnIcon["country"] = faSortAlphaDown;
+    }
+    else if (this.columnSortOrder["country"] == "desc")
+    {
+      this.columnSortOrder["country"] = "asc";
+      this.columnIcon["country"] = faSortAlphaUp;
+    }
     this.download(query, 1);
   }
 
@@ -138,7 +182,18 @@ class StudentStore {
     let query = this.createQueryObject();
     const sort_control = document.getElementById("filterrific_sorted_by");
     query[sort_control.name] = 'created_at_' + this.columnSortOrder["created_at"];
-    this.columnSortOrder["created_at"] = this.columnSortOrder["created_at"] == "asc" ? "desc" : "asc";
+    //this.columnSortOrder["created_at"] = this.columnSortOrder["created_at"] == "asc" ? "desc" : "asc";
+    this.resetColumnIcons();
+    if (this.columnSortOrder["created_at"] == "asc")
+    {
+      this.columnSortOrder["created_at"] = "desc";
+      this.columnIcon["created_at"] = faSortNumericDown;
+    }
+    else if (this.columnSortOrder["created_at"] == "desc")
+    {
+      this.columnSortOrder["created_at"] = "asc";
+      this.columnIcon["created_at"] = faSortNumericUp;
+    }
     this.download(query, 1);
   }
 
@@ -153,6 +208,13 @@ class StudentStore {
       array.reverse();
     }
     this.columnSortOrder[key] = (this.columnSortOrder[key] == "desc") ? "asc" : "desc";
+  }
+
+  @action resetColumnIcons() {
+    this.columnIcon["name"] = faSort;
+    this.columnIcon["email"] = faSort;
+    this.columnIcon["country"] = faSort;
+    this.columnIcon["created_at"] = faSort;
   }
   
 }

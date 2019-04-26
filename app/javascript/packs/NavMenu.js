@@ -17,7 +17,7 @@ import {Button, Form, FormControl} from "react-bootstrap";
     return (
       <div >
         <Navbar bg="light" expand="lg" className="m-5">
-          <Navbar.Brand href="#home">Filterrific JSON</Navbar.Brand>
+          <Navbar.Brand href="#home">Filterrific JSON API Demo</Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav"/>
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="mr-auto">
