@@ -15,6 +15,7 @@ import '!style-loader!css-loader!bootstrap/dist/css/bootstrap.css';
 
   handleOnChange( changeEvent) {
     this.props.countryStore.setSelectedCountry(changeEvent.target.value);
+    this.props.studentStore.resetColumnIcons();
     this.props.studentStore.downloadStudents();
   }
 

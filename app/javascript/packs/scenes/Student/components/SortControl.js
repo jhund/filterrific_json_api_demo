@@ -21,6 +21,7 @@ import '!style-loader!css-loader!bootstrap/dist/css/bootstrap.css';
       .sortedStore
       .setSortedStore(changeEvent.target.value);
     console.log("Scene - SortControl.js  changeEvent.target.value : " + changeEvent.target.value);
+    this.props.studentStore.resetColumnIcons();
     this
       .props
       .studentStore
