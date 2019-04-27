@@ -18,7 +18,7 @@ import '!style-loader!css-loader!bootstrap/dist/css/bootstrap.css';
 
   handleOnChange( changeEvent) {
     this.props.searchStore.setSearchText(changeEvent.target.value);
-    this.props.studentStore.resetColumnIcons();
+    //this.props.studentStore.resetColumnIcons();
     this.debounceDownloadStudents();
   }
 

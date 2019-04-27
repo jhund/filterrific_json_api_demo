@@ -28,7 +28,7 @@ const MyDatePicker = styled(DatePicker)`
 
   handleChange(date) {
     this.props.dateStore.setDate(date);
-    this.props.studentStore.resetColumnIcons();
+    //this.props.studentStore.resetColumnIcons();
 
     function delay(ms) {
       return new Promise(resolve => setTimeout(resolve, ms));
