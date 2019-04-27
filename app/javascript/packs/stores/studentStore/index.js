@@ -38,8 +38,17 @@ class StudentStore {
 
   @action.bound download(query, pageNumber = 1) {
     console.log("StudentStore - download: query  = " + query);
-    let apiHost = 'http://' + (process.env.API_HOST || 'localhost') + ':3000';
-    apiHost = 'https://agile-falls-98686.herokuapp.com';
+    const protocol = window.location.protocol;
+    const hostname = window.location.hostname;
+    const port = window.location.port;
+    //let apiHost = 'http://' + (process.env.API_HOST || 'localhost') + ':3000';
+    const apiHost = protocol + '//' + hostname + ':' + port; 
+    console.log("StudentStore - download: document.referrert  = " + document.referrer);
+    console.log("StudentStore - download: window.location.hostname  = " + window.location.hostname);
+    console.log("StudentStore - download: window.location.protocol  = " + window.location.protocol);
+    console.log("StudentStore - download: window.location.port  = " + window.location.port);
+    console.log("StudentStore - download: window.location.href  = " + window.location.href);
+    //apiHost = 'https://agile-falls-98686.herokuapp.com';
     console.log("StudentStore - download: apiHost  = " + apiHost);
     console.log("StudentStore - download: process.env.API_HOST  = " + process.env.API_HOST);
     paginationStore.setQuery(query);
