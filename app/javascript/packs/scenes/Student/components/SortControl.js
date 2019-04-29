@@ -11,9 +11,7 @@ import '!style-loader!css-loader!bootstrap/dist/css/bootstrap.css';
   constructor(props) {
     super(props);
     this.state = {};
-    this.handleOnChange = this
-      .handleOnChange
-      .bind(this);
+    this.handleOnChange = this.handleOnChange.bind(this);
   }
 
   handleOnChange(changeEvent) {

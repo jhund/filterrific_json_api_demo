@@ -20,13 +20,13 @@ class StudentStore {
     this.total = 0;
     this.per_page = 0;
     this.nextStateColumnSortOrder = {
-      "name": "asc",
+      "name": "desc",
       "email": "asc",
       "country": "asc",
       "created_at": "asc"
     };
     this.columnIcon = {
-      "name": faSort,
+      "name": faSortAlphaDown,
       "email": faSort,
       "country": faSort,
       "created_at": faSort
