@@ -34,6 +34,7 @@ import { faSort, faSortAlphaDown, faSortAlphaUp, faSortNumericDown, faSortNumeri
     this.props.dateStore.resetDate();
     this.props.sortedStore.resetSortedStore();
     this.props.studentStore.resetColumnIcons();
+    this.props.studentStore.setColumnIcon("name", faSortAlphaDown)
 
 
     function delay(ms) {
