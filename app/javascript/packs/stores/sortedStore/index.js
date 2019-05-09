@@ -22,7 +22,6 @@ class SortedStore {
    
   @action setSortedStore(chosenSort) {
     this.selectedSort = chosenSort;
-    console.log("SortedStore - setSortedStore: chosenStore = " + chosenSort);
   }
 
   @action resetSortedStore() {

@@ -15,10 +15,9 @@ import '!style-loader!css-loader!bootstrap/dist/css/bootstrap.css';
   }
 
   handleOnChange(changeEvent) {
-    this .props .sortedStore .setSortedStore(changeEvent.target.value);
-    console.log("Scene - SortControl.js  changeEvent.target.value : " + changeEvent.target.value);
-    this .props .studentStore .resetColumnIcons();
-    this .props .studentStore .downloadStudents();
+    this.props.sortedStore.setSortedStore(changeEvent.target.value);
+    this.props.studentStore.resetColumnIcons();
+    this.props.studentStore.downloadStudents();
     switch (changeEvent.target.value) {
       case "name_asc":
         this.props.studentStore.setColumnIcon("name", faSortAlphaDown)
