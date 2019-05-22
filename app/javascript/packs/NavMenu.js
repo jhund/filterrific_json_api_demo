@@ -23,6 +23,7 @@ import {Button, Form, FormControl} from "react-bootstrap";
             <Nav className="mr-auto">
               <Nav.Link href="#students">Students</Nav.Link>
               <Nav.Link href="http://filterrific.clearcove.ca/">Documentation</Nav.Link>
+              <Nav.Link href="https://github.com/jhund/filterrific_json_api_demo">Source</Nav.Link>
             </Nav>
           </Navbar.Collapse>
         </Navbar>
