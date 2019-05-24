@@ -1,4 +1,4 @@
-# Filterrif JSON API Demo
+# Filterrific JSON API Demo
 
 This app demonstrates how to use the [Filterrific](http://filterrific.clearcove.ca/) gem in a JSON API scenario.
 
